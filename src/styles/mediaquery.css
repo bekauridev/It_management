@@ -1,0 +1,55 @@
+/* Table styles in adminPannel */
+.responsive-table {
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+.responsive-table table {
+  width: 100%;
+  border-collapse: collapse;
+  /* text-align: center; */
+  font-size: 12px; /* Default font size */
+}
+
+.responsive-table thead {
+  /* background-color: #f5f5f5; */
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 8px;
+}
+
+/* Larger screens */
+@media (min-width: 600px) {
+  .responsive-table table {
+    font-size: 15px;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    padding: 12px;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 900px) {
+  .responsive-table table {
+    font-size: 16px;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    padding: 16px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 400px) {
+  .responsive-table table {
+    font-size: 10px;
+    text-align: center;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    padding: 6px;
+  }
+}
