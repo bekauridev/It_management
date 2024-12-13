@@ -11,6 +11,7 @@ import LoaddingPage from "./pages/LoaddingPage";
 import ServicesPage from "./pages/ServicesPage";
 import ContactPage from "./pages/ContactPage";
 import CustomerDashboard from "./pages/CustomerDashboard";
+
 // Lazy-loaded components
 const Welcome = lazy(() => import("./pages/Welcome"));
 const Login = lazy(() => import("./pages/Login"));
