@@ -10,9 +10,11 @@
   /* text-align: center; */
   font-size: 12px; /* Default font size */
 }
-
-.responsive-table thead {
-  /* background-color: #f5f5f5; */
+.responsive-table tbody {
+  cursor: pointer;
+}
+.responsive-table tbody tr:hover {
+  background-color: #04101daf;
 }
 
 .responsive-table th,

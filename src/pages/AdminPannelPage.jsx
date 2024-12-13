@@ -28,7 +28,7 @@ import { usePagination } from "../hooks/usePagination";
 import Pagination from "../components/Pagination";
 import useAuthContext from "../hooks/useAuthContext";
 import { replace, useNavigate } from "react-router-dom";
-
+import ThemeToggle from "../components/ThemeToggle";
 function AdminPannelPage() {
   const { user } = useAuthContext();
 
@@ -188,6 +188,7 @@ function AdminPannelPage() {
           <Tab>
             <FaHistory style={{ marginTop: "2px" }} />
           </Tab>
+          <Tab>Theme</Tab>
         </TabList>
 
         {/*  Form */}
@@ -315,6 +316,11 @@ function AdminPannelPage() {
         {/* Services History */}
         <TabPanel value={3}>
           <HistoryData />
+        </TabPanel>
+
+        {/* Settings */}
+        <TabPanel value={4}>
+          <ThemeToggle />
         </TabPanel>
       </Tabs>
     </Stack>

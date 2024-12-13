@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContextProvider";
-import { fetchRequest } from "../utils/fetchRequest";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+
 import LoaddingPage from "../pages/LoaddingPage";
 import useAuthContext from "../hooks/useAuthContext";
 

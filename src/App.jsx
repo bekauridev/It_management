@@ -11,7 +11,6 @@ import LoaddingPage from "./pages/LoaddingPage";
 import ServicesPage from "./pages/ServicesPage";
 import ContactPage from "./pages/ContactPage";
 import CustomerDashboard from "./pages/CustomerDashboard";
-
 // Lazy-loaded components
 const Welcome = lazy(() => import("./pages/Welcome"));
 const Login = lazy(() => import("./pages/Login"));
@@ -54,6 +53,7 @@ const App = () => {
               <Route element={<ProtectedRoute />}>
                 <Route path="/home" element={<Home />} />
                 <Route path="/adminPanel" element={<AdminPannelPage />} />
+
                 <Route path="/dashboard" element={<CustomerDashboard />} />
               </Route>
 
