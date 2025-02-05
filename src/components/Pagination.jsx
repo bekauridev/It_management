@@ -30,7 +30,7 @@ const Pagination = ({
         {currentPage} / {totalPages}
       </Typography>
       <Button
-        disabled={currentPage === totalPages}
+        disabled={currentPage === totalPages || totalPages === 0}
         size="sm"
         variant="soft"
         onClick={onNextPage}

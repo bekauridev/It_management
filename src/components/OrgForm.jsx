@@ -38,10 +38,16 @@ const OrgForm = () => {
     // Sanitize the phone number
     const sanitizedPhone = formData.phone.replace(/[^0-9]/g, ""); // Remove all non-numeric characters
 
-    const sanitizedData = {
+    // Sanitize the data and remove empty string fields
+    const sanitizedData = Object.entries({
       ...formData,
       phone: sanitizedPhone, // Replace phone with sanitized version
-    };
+    }).reduce((acc, [key, value]) => {
+      if (value !== "") {
+        acc[key] = value;
+      }
+      return acc;
+    }, {});
 
     const url = formData.category === "customer" ? "customers" : "employees";
 
@@ -102,6 +108,7 @@ const OrgForm = () => {
         <Input
           type="text"
           name="email"
+          required={false}
           placeholder={`${formData.category} email address`}
           value={formData.email}
           onChange={handleChange}

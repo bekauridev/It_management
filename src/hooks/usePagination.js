@@ -39,6 +39,8 @@ export const usePagination = (initialPage, initialItemsPerPage) => {
     setCurrentPage(1); // Reset to the first page
   };
 
+  const currPageReset = () => setCurrentPage(1);
+
   return {
     currentPage,
     itemsPerPage,
@@ -48,5 +50,6 @@ export const usePagination = (initialPage, initialItemsPerPage) => {
     goToNextPage,
     goToPreviousPage,
     changeItemsPerPage,
+    currPageReset,
   };
 };

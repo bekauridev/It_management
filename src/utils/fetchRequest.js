@@ -7,13 +7,15 @@ import { BASE_URL } from "../config/config";
  * @param {string} method - The HTTP method (e.g., "GET", "POST", "PATCH", "DELETE").
  * @param {object} [body] - Optional body to send with the request (for POST/PUT).
  * @param {boolean} [useCredentials=true] - Whether to include credentials (cookies).
+ * @param {AbortSignal} [signal] - Optional AbortSignal to cancel the request.
  * @returns {Promise<object>} - The response data from the server.
  */
 export const fetchRequest = async (
   url,
   method,
   body,
-  useCredentials = true
+  useCredentials = true,
+  signal // Add signal as an optional parameter
 ) => {
   const options = {
     method,
@@ -22,23 +24,43 @@ export const fetchRequest = async (
     },
   };
 
-  // Conditionally add body to the request if it's provided
-
+  // Add the body to the request if provided
   if (body) {
     options.body = JSON.stringify(body);
   }
 
-  // Conditionally include credentials if specified
+  // Include credentials if specified
   if (useCredentials) {
     options.credentials = "include";
   }
 
-  const res = await fetch(`${BASE_URL}/${url}`, options);
-
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data?.message || "An error occurred");
+  // Attach the signal to the request if provided
+  if (signal) {
+    options.signal = signal;
   }
 
-  return data;
+  try {
+    const res = await fetch(`${BASE_URL}/${url}`, options);
+
+    // Check if the response is in JSON format
+    const contentType = res.headers.get("Content-Type");
+    let data = null;
+
+    if (contentType && contentType.includes("application/json")) {
+      data = await res.json();
+    }
+
+    if (!res.ok) {
+      throw new Error(data?.message || "An error occurred");
+    }
+
+    // Return a consistent structure, even if data is null
+    return data || { data: null };
+  } catch (error) {
+    // Differentiate between an abort error and others
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
+    }
+    throw error; // Re-throw the error for further handling
+  }
 };

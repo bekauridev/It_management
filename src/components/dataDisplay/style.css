@@ -1,0 +1,33 @@
+.responsive-table tbody {
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .responsive-table table {
+    font-size: 15px;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    padding: 12px;
+  }
+}
+
+@media (min-width: 900px) {
+  .responsive-table table {
+    font-size: 15px;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 800px) {
+  .responsive-table table {
+    font-size: 12px;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    padding: 5px;
+  }
+}

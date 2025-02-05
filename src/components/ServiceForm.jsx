@@ -1,3 +1,4 @@
+// !! თარიღის შეყვანისას დროის დამატებაც საჭიროა
 import { useState } from "react";
 import {
   Box,
@@ -73,18 +74,18 @@ const AddServiceForm = () => {
       setLoading(false);
     }
   };
-
+  // !! როცა არ იძებნება მაგას მიხედე და ვაფშე ლამზი დისფლეი გვინდა კლიენტების და თანამშრომლეგბის
   return (
     <form onSubmit={handleSubmit}>
       {/* Employee Selector */}
       <Box mb={2}>
         <Typography level="body1" sx={{ mb: 1 }}>
-          Select Employee
+          Employee
         </Typography>
         <Select
           indicator={loading ? <Spinner size="sm" /> : <IoIosArrowDown />}
           name="employee"
-          value={formData.employee}
+          value={formData.employee || ""}
           onClick={selectChangeHandler}
           onChange={(e, value) =>
             handleChange({ target: { name: "employee", value } })
@@ -94,7 +95,7 @@ const AddServiceForm = () => {
           {employees.length > 0 &&
             employees.map((emp) => (
               <Option key={emp._id} value={emp._id}>
-                {emp.name} {emp.servicesQuantity}
+                {emp.name} | {emp.servicesQuantity}
               </Option>
             ))}
         </Select>
@@ -103,7 +104,7 @@ const AddServiceForm = () => {
       {/* Customer Selector */}
       <Box mb={2}>
         <Typography level="body1" sx={{ mb: 1 }}>
-          Select Customer
+          Customer
         </Typography>
         <Select
           name="customer"
@@ -118,7 +119,7 @@ const AddServiceForm = () => {
           {customers.length > 0 &&
             customers.map((cust) => (
               <Option key={cust._id} value={cust._id}>
-                {cust.name}
+                {cust.name} | {cust.servicesQuantity}
               </Option>
             ))}
         </Select>

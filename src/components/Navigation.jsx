@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
@@ -7,17 +8,14 @@ import Drawer from "@mui/joy/Drawer";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import { Button } from "@mui/joy";
+import ThemeToggle from "../components/ThemeToggle";
 
-import ThemeToggle from "./ThemeToggle";
 import HamburgerIcon from "./ui/icons/HamburgerIcon";
 import CloseIcon from "./ui/icons/CloseIcon";
-import useAuthContext from "../hooks/useAuthContext";
 
 export default function Navigation() {
-  const { user } = useAuthContext();
-
   const [open, setOpen] = useState(false);
-  const mainPageHref = user ? "/" : "/";
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -71,25 +69,24 @@ export default function Navigation() {
             gap: 3,
           }}
         >
-          <Link href={mainPageHref} underline="none" color="neutral.plainColor">
+          <Link href={"/"} underline="none" color="neutral.plainColor">
             მთავარი
           </Link>
 
-          <Link href="/about" underline="none" color="neutral.plainColor">
+          {/* <Link href="/about" underline="none" color="neutral.plainColor">
             ჩვენს შესახებ
-          </Link>
+          </Link> */}
+
           <Link href="/services" underline="none" color="neutral.plainColor">
             სერვისები
           </Link>
+
           <Link href="/contact" underline="none" color="neutral.plainColor">
-            <Button
-              sx={{
-                fontSize: "16px",
-              }}
-            >
-              დაგვიკავშირდი
-            </Button>
+            დაგვიკავშირდი
           </Link>
+          <Box>
+            <ThemeToggle />
+          </Box>
         </Box>
 
         {/* Hamburger Menu Icon for smaller screens */}
@@ -130,14 +127,17 @@ export default function Navigation() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "start",
+            justifyContent: "space-between",
             alignItems: "center",
+            pr: 1,
           }}
         >
           <IconButton onClick={toggleDrawer} size="lg">
             <CloseIcon />
           </IconButton>
+          <ThemeToggle />
         </Box>
+
         <List
           sx={{
             display: "flex",
@@ -149,7 +149,7 @@ export default function Navigation() {
         >
           <ListItem>
             <Link
-              href={mainPageHref}
+              href={"/"}
               underline="none"
               color="neutral.plainColor"
               onClick={toggleDrawer}
